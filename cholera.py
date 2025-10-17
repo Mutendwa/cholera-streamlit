@@ -92,10 +92,8 @@ st.markdown("""
 # In[3]:
 
 
-get_ipython().system('jupyter nbconvert --to script cholera.ipynb')
+#get_ipython().system('jupyter nbconvert --to script cholera.ipynb')
 
-
-# In[ ]:
 
 
 
