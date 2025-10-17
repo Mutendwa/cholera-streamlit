@@ -88,7 +88,7 @@ st.markdown("""
 - **Recovered (R)** returns to S over time due to waning immunity (ω).
 """)
 
-
+st.markdown("**Developed by:** Edwin Mutendwa")
 # In[3]:
 
 
