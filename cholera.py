@@ -15,6 +15,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from scipy.integrate import odeint
 
+
 # --------------------------
 # Cholera SEIR-B model
 # --------------------------
@@ -79,7 +80,39 @@ ax.legend()
 ax.grid(True)
 
 st.pyplot(fig)
+# --- Create DataFrame from results ---
+df = pd.DataFrame({
+    "Time (days)": t,
+    "Susceptible (S)": S,
+    "Exposed (E)": E,
+    "Infectious (I)": I,
+    "Recovered (R)": R,
+    "Bacteria (B)": B
+})
 
+st.subheader("📥 Download Simulation Data")
+
+# Convert DataFrame to CSV (in-memory)
+csv_buffer = io.StringIO()
+df.to_csv(csv_buffer, index=False)
+st.download_button(
+    label="⬇️ Download Results as CSV",
+    data=csv_buffer.getvalue(),
+    file_name="cholera_simulation_data.csv",
+    mime="text/csv"
+)
+
+# --- Save plot as PNG (in-memory) ---
+png_buffer = io.BytesIO()
+fig.savefig(png_buffer, format="png")
+png_buffer.seek(0)
+
+st.download_button(
+    label="🖼️ Download Graph as PNG",
+    data=png_buffer,
+    file_name="cholera_simulation_plot.png",
+    mime="image/png"
+)
 st.markdown("""
 ### 💡 Interpretation
 - **Susceptible (S)** decreases as people get exposed via contaminated water.  
